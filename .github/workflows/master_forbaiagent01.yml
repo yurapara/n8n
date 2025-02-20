@@ -23,6 +23,7 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+        
           npm install -g pnpm
           pnpm install
           pnpm run build
@@ -51,6 +52,13 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Fix memory limit issue
+        run: |
+        
+          npm install -g increase-memory-limit
+          increase-memory-limit
+          set NODE_OPTIONS=--max_old_space_size=4096
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
