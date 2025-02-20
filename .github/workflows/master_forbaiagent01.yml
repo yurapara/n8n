@@ -58,8 +58,8 @@ jobs:
         
           npm install -g increase-memory-limit
           increase-memory-limit
-          set NODE_OPTIONS=--max_old_space_size=4096
-
+          export NODE_OPTIONS="--max-old-space-size=8192"
+          
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
